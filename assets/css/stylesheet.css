@@ -8,16 +8,22 @@
 header{
     background-color: #404146;
     color:#f0f0f0;
-    height: 72px;
+    height: fit-content;
     padding-left: 24px;
+    padding-right: 24px;
     display: flex;
     align-items: baseline;
+    line-height: 72px;
 }
 
-header h1{
+header h1, footer h1{
     font-size: 30px;
-    line-height: 72px;
     letter-spacing: 5px;
+}
+
+.fa{
+    font-size:48px; 
+    display:none;
 }
 
 header ul{
@@ -84,3 +90,77 @@ h3{
     color: rgb(44, 44, 44);
 }
 
+.form{
+    display: flex;
+    flex-direction: column;
+    width:50%;
+}
+
+.form input, textarea{
+    padding: 10px;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: #ededed;
+}
+
+.button{
+    width: 25%;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: rgba(255, 241, 43, 0.729);
+}
+
+footer{
+    background-color: #898989;
+    color:#f0f0f0;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding:24px;
+}
+
+footer li{
+    padding: 8px;
+}
+
+@media(max-width:650px){
+    header{
+        justify-content: space-between;
+    }
+    
+    header ul{
+        display: none;
+    }
+
+    .profile h1{
+        font-size: 72px;
+    }
+    
+    .profile p{
+        font-size: 24px;
+    }
+    
+    .profile img{
+        width: 50%;
+    }
+    .example{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .example img{
+        width:50%;
+        margin: 24px;
+    }
+
+    .form{
+        width:75%;
+    }
+
+    .button{
+        width: 50%;
+    }
+}
