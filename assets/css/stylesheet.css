@@ -65,6 +65,7 @@ header li{
 
 .profile img{
     width: 25%;
+    max-width: 480px;
 }
 
 h3{
@@ -84,6 +85,7 @@ h3{
 .example img{
     width:75%;
     margin: 24px;
+    max-width: 360px;
 }
 
 .example p{
@@ -151,6 +153,11 @@ footer li{
         justify-content: center;
         flex-direction: column;
     }
+
+    .project+.project{
+        display: none;
+    }
+
     .example img{
         width:50%;
         margin: 24px;
@@ -164,3 +171,22 @@ footer li{
         width: 50%;
     }
 }
+
+.slider{
+    display: flex;
+    align-items: center;
+}
+
+.prev,
+.next {
+  font-weight: bold;
+  font-size: 48px;
+  cursor: pointer;
+  border-radius: 0 12px 12px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+}
+
