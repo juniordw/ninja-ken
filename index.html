@@ -39,9 +39,25 @@
         <h3>Hubungi Saya</h3>
         <div class="form">
             <input type="email" placeholder="Email (Diperlukan)">
+            <p id="warning">*alamat email tidak sesuai</p>
             <textarea placeholder="Message (Diperlukan)"></textarea>
         </div>
         <input class="button" type="submit" value="kirim">
+    </div>
+    <div class="faq light">
+        <h3>Pertanyaan Umum</h3>
+        <button class="accordion">Pertanyaan 1</button>
+        <div class="panel">
+            <p>Ini adalah jawaban untuk pertanyaan 1.</p>
+        </div>
+        <button class="accordion">Pertanyaan 2</button>
+        <div class="panel">
+            <p>Ini adalah jawaban untuk pertanyaan 2.</p>
+        </div>
+        <button class="accordion">Pertanyaan 3</button>
+        <div class="panel">
+            <p>Ini adalah jawaban untuk pertanyaan 3.</p>
+        </div>
     </div>
     <footer>
         <h1>NINJA KEN</h1>
@@ -52,8 +68,24 @@
         </ul>
     </footer>
     <script>
-        let index = 1;
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordions = document.querySelectorAll('.accordion');
 
+            accordions.forEach(accordion => {
+                accordion.addEventListener('click', function () {
+                    this.classList.toggle('active');
+                    const panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + 'px';
+                    }
+                });
+            });
+        });
+        
+        let index = 1;
+    
         const update = (n) => {
             index += n;
             if (index > 3) {
@@ -63,23 +95,23 @@
             }
             showProjects();
         };
-
+    
         const showProjects = () => {
             const example = document.querySelector(".example");
             example.innerHTML = "";
-
+    
             for (let i = 1; i <= 3; i++) {
                 const project = document.createElement("div");
                 project.classList.add("project");
-
+    
                 const image = document.createElement("img");
                 image.src = `./assets/img/${index}.png`;
                 project.appendChild(image);
-
+    
                 const paragraph = document.createElement("p");
                 paragraph.innerHTML = `Image ${index}`;
                 project.appendChild(paragraph);
-
+    
                 example.appendChild(project);
                 index++;
                 if (index > 3) {
@@ -87,8 +119,29 @@
                 }
             }
         };
-
-        showProjects();
-    </script>
+    
+        const validateEmail = () => {
+            const emailInput = document.querySelector("input[type='email']");
+            const email = emailInput.value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+            if (!emailPattern.test(email)) {
+                document.getElementById("warning").style.display = "block";
+                return false;
+            } else {
+                document.getElementById("warning").style.display = "none";
+                return true;
+            }
+        };
+    
+        window.onload = () => {
+            showProjects();
+            document.querySelector(".button").addEventListener("click", (event) => {
+                if (!validateEmail()) {
+                    event.preventDefault();
+                }
+            });
+        };
+    </script>    
 </body>
 </html>
